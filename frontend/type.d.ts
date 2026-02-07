@@ -204,18 +204,17 @@ export interface CoinDetailsData {
     price_change_24h_in_currency: {
       usd: number;
     };
-    price_change_percentage_24h_in_currency: {
-      usd: number;
-    };
-    price_change_percentage_30d_in_currency: {
-      usd: number;
-    };
-    market_cap: {
-      usd: number;
-    };
-    total_volume: {
-      usd: number;
-    };
+    price_change_percentage_24h_in_currency: { usd: number };
+    price_change_percentage_7d_in_currency: { usd: number };
+    price_change_percentage_30d_in_currency: { usd: number };
+    price_change_percentage_1y_in_currency: { usd: number };
+    market_cap: { usd: number };
+    total_volume: { usd: number };
+    circulating_supply: number;
+    total_supply: number;
+    max_supply: number;
+    ath: { usd: number };
+    ath_change_percentage: { usd: number };
   };
   market_cap_rank: number;
   description: {

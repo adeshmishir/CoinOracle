@@ -9,8 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-//import datatableprops from type.d.ts
-import { DataTableProps } from '@/type.d';
+import { DataTableProps } from '@/type';
 import { cn } from '@/lib/utils';
 
 const DataTable = <T,>({
@@ -26,7 +25,6 @@ const DataTable = <T,>({
 }: DataTableProps<T>) => {
   return (
     <Table className={cn('custom-scrollbar', tableClassName)}>
-      {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
       <TableHeader className={headerClassName}>
         <TableRow className={cn('hover:bg-transparent!', headerRowClassName)}>
           {columns.map((column, columnIndex) => (

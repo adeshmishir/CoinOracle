@@ -8,7 +8,7 @@ import { DataTableColumn } from '@/type';
 import { cn } from '@/lib/utils';
 import { TrendingDown, TrendingUp } from 'lucide-react';
 
-const TrendingCoins = async () => {
+const TrendingCoins = async ({ currentCoinId }: { currentCoinId?: string }) => {
   const trendingCoins = await fetcher<{ coins: TrendingCoin[] }>(
     '/search/trending',
     undefined,
@@ -20,24 +20,41 @@ const TrendingCoins = async () => {
       cellClassName: 'name-cell',
       cell: (coin) => {
         const item = coin.item;
+        const isActive = item.id === currentCoinId;
         return (
           <Link
             href={`/coin/${item.id}`}
-            className="group hover:opacity-80 transition-opacity"
+            className={cn(
+              'group transition-all duration-200 px-2 py-1 rounded-lg flex items-center gap-3',
+              isActive
+                ? 'bg-purple-500/10 border border-purple-500/20'
+                : 'hover:bg-gray-800'
+            )}
           >
-            <div className="flex items-center gap-3">
-              <Image
-                src={item.large}
-                alt={item.name}
-                width={32}
-                height={32}
-                className="rounded-full bg-gray-800"
-              />
-              <div className="flex flex-col">
-                <p className="font-semibold text-gray-100">{item.name}</p>
-                <p className="text-xs text-gray-400 uppercase">{item.symbol}</p>
-              </div>
+            <Image
+              src={item.large}
+              alt={item.name}
+              width={32}
+              height={32}
+              className="rounded-full bg-gray-800"
+              style={{ height: 'auto' }}
+            />
+            <div className="flex flex-col">
+              <p
+                className={cn(
+                  'font-semibold transition-colors',
+                  isActive
+                    ? 'text-purple-400'
+                    : 'text-gray-100 group-hover:text-purple-300'
+                )}
+              >
+                {item.name}
+              </p>
+              <p className="text-xs text-gray-400 uppercase">{item.symbol}</p>
             </div>
+            {isActive && (
+              <div className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+            )}
           </Link>
         );
       },
@@ -87,11 +104,13 @@ const TrendingCoins = async () => {
   return (
     <div>
       <section className="bg-gray-900 p-6 rounded-2xl shadow-xl border border-gray-800/50">
-        <div className="flex items-center justify-between mb-5">
-          <h2 className="text-xl font-bold text-gray-100">Trending Coins</h2>
+        <div className="flex items-center justify-between mb-5 px-1">
+          <h2 className="text-xl font-bold text-gray-100 italic">
+            Trending Coins
+          </h2>
           <Link
-            href="/trending"
-            className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
+            href="/coins"
+            className="text-xs font-black uppercase tracking-widest text-purple-500 hover:text-purple-400 transition-colors"
           >
             View All
           </Link>

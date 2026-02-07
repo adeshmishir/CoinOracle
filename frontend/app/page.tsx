@@ -7,15 +7,21 @@ import {
   CoinOverviewFallback,
   TrendingCoinsFallback,
 } from '@/components/home/fallback';
-const page = async () => {
+interface Props {
+  searchParams: Promise<{ coinId?: string }>;
+}
+
+const Home = async ({ searchParams }: Props) => {
+  const { coinId = 'bitcoin' } = await searchParams;
+
   return (
     <main className="main-container">
       <section className="home-grid">
-        <Suspense fallback={<CoinOverviewFallback />}>
-          <CoinOverview />
+        <Suspense fallback={<CoinOverviewFallback />} key={coinId}>
+          <CoinOverview coinId={coinId} />
         </Suspense>
         <Suspense fallback={<TrendingCoinsFallback />}>
-          <TrendingCoins />
+          <TrendingCoins currentCoinId={coinId} />
         </Suspense>
       </section>
       <Suspense fallback={<CategoriesFallback />}>
@@ -25,4 +31,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Home;
