@@ -352,7 +352,7 @@
   }
 
   .home-grid {
-    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-start lg:items-center gap-6;
+    @apply grid grid-cols-1 lg:grid-cols-2 lg:items-stretch gap-6;
   }
 
   #categories-fallback {

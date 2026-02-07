@@ -36,7 +36,14 @@ export interface Ticker {
   trade_url: string;
 }
 
-export type Period = 'daily' | 'weekly' | 'monthly' | '3months' | '6months' | 'yearly' | 'max';
+export type Period =
+  | 'daily'
+  | 'weekly'
+  | 'monthly'
+  | '3months'
+  | '6months'
+  | 'yearly'
+  | 'max';
 
 export interface CoinMarketData {
   id: string;
@@ -279,7 +286,13 @@ export interface DataTableProps<T> {
   bodyCellClassName?: string;
 }
 
-export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon' | 'icon-sm' | 'icon-lg';
+export type ButtonSize =
+  | 'default'
+  | 'sm'
+  | 'lg'
+  | 'icon'
+  | 'icon-sm'
+  | 'icon-lg';
 
 export type PaginationLinkProps = {
   isActive?: boolean;

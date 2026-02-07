@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -7,11 +7,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 
 //import datatableprops from type.d.ts
-import { DataTableProps } from "@/type.d";
-import { cn } from "@/lib/utils";
+import { DataTableProps } from '@/type.d';
+import { cn } from '@/lib/utils';
 
 const DataTable = <T,>({
   columns,
@@ -25,16 +25,16 @@ const DataTable = <T,>({
   bodyCellClassName,
 }: DataTableProps<T>) => {
   return (
-    <Table className={cn("custom-scrollbar", tableClassName)}>
+    <Table className={cn('custom-scrollbar', tableClassName)}>
       {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
       <TableHeader className={headerClassName}>
-        <TableRow className={cn("hover:bg-transparent!", headerRowClassName)}>
+        <TableRow className={cn('hover:bg-transparent!', headerRowClassName)}>
           {columns.map((column, columnIndex) => (
             <TableHead
               key={columnIndex}
               className={cn(
-                "bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5",
-                headerCellClassName,
+                'bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5',
+                headerCellClassName
               )}
             >
               {column.header}
@@ -47,14 +47,14 @@ const DataTable = <T,>({
           <TableRow
             key={rowKey(row, rowIndex)}
             className={cn(
-              "overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-200/30! relative:bg-transparent!",
-              bodyRowClassName,
+              'overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-200/30! relative:bg-transparent!',
+              bodyRowClassName
             )}
           >
             {columns.map((column, columnIndex) => (
               <TableCell
                 key={columnIndex}
-                className={cn("py-4 first:pl-5 last:pr-5", bodyCellClassName)}
+                className={cn('py-4 first:pl-5 last:pr-5', bodyCellClassName)}
               >
                 {column.cell(row, rowIndex)}
               </TableCell>
